@@ -1,0 +1,195 @@
+<html>
+<head>
+    <style>
+        .error-message {
+          color: red;
+          display: none;
+        }
+          body{
+        text-align:center;
+        border:3px solid green;
+        background-color:yellow;
+        }
+
+
+    </style>
+</head>
+<body>
+<h2>Passport Seva Kendra</h2>
+<form id="myForm" action="user" method="post"><!--//http methods , 9 methods are present, post is one of them-->
+    <div class="input-control"> <p>First Name:</p><input type="text" id="firstName" name="firstName" ></div>
+
+    <span class="error-message" id="firstNameError">Please enter a valid first name.</span>
+
+    <div class="input-control"><p>Last Name:</p><input type="text" id="lastName" name="lastName"></div>
+
+    <span class="error-message" id="lastNameError">Please enter a valid last name.</span>
+    <div class="input-control"><p>Date of Birth:</p><input type="date" id="dob" name="dob"></div>
+
+    <span class="error-message" id="dateError">Please enter a valid date.</span>
+
+    <div class="input-control"><p>Phone Number:</p><input type="text" id="phoneNumber" name="phoneNumber"></div>
+
+    <span class="error-message" id="phError">Please enter a phone number of 10 digits.</span>
+
+    <div class="input-control"><p>Aadhar Number:</p><input type="text" id="aadharNumber" name="aadharNumber"></div>
+
+    <span class="error-message" id="aadharError">Please enter a valid 12 digit aadhar number.</span>
+
+    <div class="input-control"><p>Passport Office:</p>
+        <select id="cities" name="cities">
+            <option value="bangalore">Bangalore</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="chennai">Chennai</option>
+            <option value="kolkata">Kolkata</option>
+            <option value="delhi">Delhi</option>
+        </select></div>
+
+    <div class="input-control"><p>Email:</p><input type="text" id="emailID"  name="emailID"></div>
+
+    <span class="error-message" id="emailError">Please provide email id in abc@abc.de format.</span>
+    <div class="input-control"><p>Email same as LoginID?</p></div>
+    <input type="radio" id="yes" name="yesno" value="yes" onclick="handleRadioClick('yes')"> Yes
+    <input type="radio" id="no" name="yesno" value="no" onclick="handleRadioClick('no')"> No
+
+    <div class="input-control"><p>LoginID:</p><input type="text" id="loginID" name="loginID"></div>
+
+    <span class="error-message" id="cEmailError">Please provide login id in abc@abc.com format.</span>
+
+    <div class="input-control"><p>Password:</p><input type="password" id="password" name="password"></div>
+
+    <span class="error-message" id="passwordError">Password length should be greater than 8 characters.</span>
+
+    <div class="input-control"><p>Confirm Password:</p><input type="password" id="c_password"  name="c_password"></div>
+
+    <span class="error-message" id="cPasswordError">Passwords do not match.</span>
+
+    <input id="submitbutton" type="submit" value="SUBMIT" disabled>
+
+</form>
+<script>
+    function handleRadioClick(value) {
+                var loginEmailInput = document.getElementById('loginID');
+    if (value === 'yes') {
+               var emailInput = document.getElementById('emailID');
+                loginEmailInput.value = emailInput.value;
+                loginEmailInput.readOnly = true;
+            } else {
+                loginEmailInput.readOnly = false;
+            }
+        }
+const isValidEmail = email => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+  document.getElementById('myForm').addEventListener('input', function() {
+    // Reset error messages
+    document.getElementById('firstNameError').style.display = 'none';
+    document.getElementById('lastNameError').style.display = 'none';
+    document.getElementById('phError').style.display = 'none';
+    document.getElementById('aadharError').style.display = 'none';
+    document.getElementById('emailError').style.display = 'none';
+    document.getElementById('cEmailError').style.display = 'none';
+    document.getElementById('passwordError').style.display = 'none';
+    document.getElementById('cPasswordError').style.display = 'none';
+
+     var isValid = true;
+
+    // Validate firstNameError
+    var firstname = document.getElementById('firstName').value;
+    if (!firstname ) {
+      document.getElementById('firstNameError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('firstNameError').style.display = 'none';
+        }, 2000);
+ }
+
+    // Validate lastNameError
+    var lastname = document.getElementById('lastName').value;
+    if (!lastname ) {
+      document.getElementById('lastNameError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('lastNameError').style.display = 'none';
+        }, 2000);
+    }
+    // Validate phError
+    var phoneNumber = document.getElementById('phoneNumber').value;
+    if (!phoneNumber || phoneNumber.length !== 10 || isNaN(phoneNumber)) {
+      document.getElementById('phError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('phError').style.display = 'none';
+        }, 2000);
+    }
+
+    // Validate aadharError
+    var aadhar = document.getElementById('aadharNumber').value;
+    if (aadhar.length !=12) {
+      document.getElementById('aadharError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('aadharError').style.display = 'none';
+        }, 2000);
+    }
+
+ var aadhar = document.getElementById('aadharNumber').value;
+    if (aadhar.length !=12) {
+      document.getElementBy
+
+
+      Id('aadharError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('aadharError').style.display = 'none';
+        }, 2000);
+    }
+    // Validate emailError
+    var email = document.getElementById('emailID').value;
+    if (!isValidEmail(email)) {
+      document.getElementById('emailError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('emailError').style.display = 'none';
+        }, 2000);
+    }
+    // Validate cEmailError
+    var cemail = document.getElementById('loginID').value;
+    if(document.getElementById('yes').checked){
+    document.getElementById('loginID').readOnly=true;
+    document.getElementById('loginID').value=email;
+    }
+    else if(!isValidEmail(cemail)){
+    document.getElementById('loginID').readOnly=true;
+      document.getElementById('cEmailError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('cEmailError').style.display = 'none';
+        }, 2000);
+    }
+  // Validate passwordError
+    var password = document.getElementById('password').value;
+    if (password.length < 8 ) {
+      document.getElementById('passwordError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('cpasswordError').style.display = 'none';
+        }, 2000);
+    }
+
+    // Validate cPasswordError
+    var cpassword = document.getElementById('c_password').value;
+    if (cpassword!=password) {
+      document.getElementById('cPasswordError').style.display = 'inline';
+      isValid = false;
+      setTimeout(function () {
+          document.getElementById('cPasswordError').style.display = 'none';
+        }, 2000);
+    }
+    document.getElementById('submitbutton').disabled = !isValid;
+  });
+</script>
+</body>
+</html>
+
